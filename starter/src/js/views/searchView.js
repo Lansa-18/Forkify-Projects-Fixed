@@ -7,7 +7,7 @@ class SearchView {
     return query;
   }
 
-  _clearInput(){
+  _clearInput() {
     this._parentEl.querySelector('.search__field').value = '';
   }
 
@@ -17,7 +17,6 @@ class SearchView {
       handler();
     });
   }
-
 }
 
 export default new SearchView();
