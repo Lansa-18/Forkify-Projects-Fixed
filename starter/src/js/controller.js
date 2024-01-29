@@ -3,6 +3,7 @@ import recipeView from './views/recipeView.js';
 import SearchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
+import bookMarksView from './views/bookMarksView.js';
 
 // import icons from '../img/icons.svg'; // Parcel 1
 import 'core-js/stable'; // polyfilling everything else
@@ -22,6 +23,7 @@ const controlRecipes = async () => {
 
     // 0. Update results view to mark selected search result
     resultsView.update(model.getSearchResultsPage());
+    bookMarksView.update(model.state.bookmarks);
 
     // 1.  Loading recipe
     await model.loadRecipe(id);
@@ -72,13 +74,18 @@ const controlServings = newServings => {
 
 const controlAddBookmark = () => {
   // Add or remove bookmark
-  console.log(model.state.recipe.bookmarked);
   if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
   else model.deleteBookmark(model.state.recipe.id);
 
-  console.log(model.state.recipe);
+  // Update recipe view
   recipeView.update(model.state.recipe);
+
+  // Render bookmarks
+  bookMarksView.render(model.state.bookmarks)
 };
+
+
+
 
 
 
