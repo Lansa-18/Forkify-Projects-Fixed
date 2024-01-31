@@ -94,7 +94,7 @@ const controlBookmarks = () => {
 }
 
 const createAddRecipe = (newRecipe) => {
-  console.log(newRecipe);
+  // console.log(newRecipe);
 }
 
 
