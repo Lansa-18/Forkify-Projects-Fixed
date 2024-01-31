@@ -93,7 +93,9 @@ const controlBookmarks = () => {
   bookMarksView.render(model.state.bookmarks)
 }
 
-
+const createAddRecipe = (newRecipe) => {
+  console.log(newRecipe);
+}
 
 
 
@@ -105,5 +107,6 @@ const init = goToPage => {
   SearchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
+  addRecipeView.addHandlerUpload(createAddRecipe);
 };
 init();
