@@ -1,9 +1,9 @@
 import View from './view.js';
-import previewView from './previewView.js';
 import icons from 'url:../../img/icons.svg'; // Parcel 2
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
+  _message = 'Recipe was successfully uploaded :)';
 
   _windowElement = document.querySelector('.add-recipe-window');
   _overlay = document.querySelector('.overlay');
@@ -30,11 +30,14 @@ class AddRecipeView extends View {
     this._overlay.addEventListener('click', this.toggleWindow.bind(this));
   }
 
-  _addhandlerUpload(handler){
+  addHandlerUpload(handler){
     this._parentElement.addEventListener('submit', function(e){
         e.preventDefault();
-        const data = [...new FormData(this)];
-        console.log(data);
+        const dataArr = [...new FormData(this)];
+
+        // Converting an array of entries to an object using Object.fromEntries
+        const data = Object.fromEntries(dataArr)
+        handler(data);
     });
   }
 
